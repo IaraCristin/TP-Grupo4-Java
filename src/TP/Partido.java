@@ -62,33 +62,33 @@ public class Partido {
 	//COMPLETAR CUANDO ESTÉ DEFINIDO ResultadoEnum
 	
 	//Asumimos que nos dan un equipo que está en el partido
-	public ResultadoEnum resultado(Equipo e) {
-		if (e == this.equipo1) {
-			
-			if (this.golesEquipo1 > this.golesEquipo2) {
-				
-				//Completar los campos para usar Enum
-				
-			} else if (this.golesEquipo1 < this.golesEquipo2) {
-				
-			} else {
-				
-			}
-			
-			
-		} else {
-			
-			if (this.golesEquipo2 > this.golesEquipo1) {
-				
-				//Completar los campos para usar Enum
-				
-			} else if (this.golesEquipo2 < this.golesEquipo1) {
-				
-			} else {
-				
-			}
-			
-		}
-	}
+//	public ResultadoEnum resultado(Equipo e) {
+//		if (e == this.equipo1) {
+//			
+//			if (this.golesEquipo1 > this.golesEquipo2) {
+//				
+//				//Completar los campos para usar Enum
+//				
+//			} else if (this.golesEquipo1 < this.golesEquipo2) {
+//				
+//			} else {
+//				
+//			}
+//			
+//			
+//		} else {
+//			
+//			if (this.golesEquipo2 > this.golesEquipo1) {
+//				
+//				//Completar los campos para usar Enum
+//				
+//			} else if (this.golesEquipo2 < this.golesEquipo1) {
+//				
+//			} else {
+//				
+//			}
+//			
+//		}
+//	}
 	
 }
