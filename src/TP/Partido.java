@@ -49,46 +49,26 @@ public class Partido {
 		return this.equipo2;
 	}
 	
-	public int goles1() {
+	public int getGoles1() {
 		return this.golesEquipo1;
 	}
 	
-	public int goles2() {
+	public int getGoles2() {
 		return this.golesEquipo2;
 	}
 	
 	//Métodos
 	
-	//COMPLETAR CUANDO ESTÉ DEFINIDO ResultadoEnum
+		//Ya que estoy guardando el resultado en la descripción del equipo, lo puedo sacar de ahí
 	
-	//Asumimos que nos dan un equipo que está en el partido
-//	public ResultadoEnum resultado(Equipo e) {
-//		if (e == this.equipo1) {
-//			
-//			if (this.golesEquipo1 > this.golesEquipo2) {
-//				
-//				//Completar los campos para usar Enum
-//				
-//			} else if (this.golesEquipo1 < this.golesEquipo2) {
-//				
-//			} else {
-//				
-//			}
-//			
-//			
-//		} else {
-//			
-//			if (this.golesEquipo2 > this.golesEquipo1) {
-//				
-//				//Completar los campos para usar Enum
-//				
-//			} else if (this.golesEquipo2 < this.golesEquipo1) {
-//				
-//			} else {
-//				
-//			}
-//			
-//		}
-//	}
+	//Asumimos que nos dan un equipo que es parte del partido
+	public String resultado(Equipo e) {
+		if (e.getNombre() == this.equipo1.getNombre()) {
+			return this.equipo1.getDescripcion();
+		} else {
+			return this.equipo2.getDescripcion();
+		}
+	}
+	
 	
 }

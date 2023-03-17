@@ -6,7 +6,7 @@ public class Pronostico {
 	
 	private Partido partido;
 	private Equipo equipo;
-	private ResultadoEnum resultado;
+	private String resultado;
 	
 	
 	//Setters
@@ -19,7 +19,7 @@ public class Pronostico {
 		this.equipo = e;
 	}
 	
-	public void setResultado(ResultadoEnum res) {
+	public void setResultado(String res) {
 		this.resultado = res;
 	}
 	
@@ -33,7 +33,7 @@ public class Pronostico {
 		return this.equipo;
 	}
 	
-	public ResultadoEnum getResultado() {
+	public String getResultado() {
 		return this.resultado;
 	}
 }
