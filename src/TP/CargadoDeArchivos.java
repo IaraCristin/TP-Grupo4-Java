@@ -55,7 +55,6 @@ public class CargadoDeArchivos {
 		//Una vez limpio, tenemos solo los partidos cargados
 		
 		Partido[] partidos = new Partido[lineasRes.size()]; //Sabemos que la cantidad de lineas es igual a la cantidad de partidos
-		int i = 0; //Indice para navegar el vector
 		
 		Ronda ronda1 = new Ronda();
 		
@@ -63,13 +62,14 @@ public class CargadoDeArchivos {
 		ronda1.setNro("1");
 		
 		Pronostico[] pronosticos = new Pronostico[lineasProc.size()]; //Sabemos que la cantidad de lineas es igual a la cantidad de predicciones
-		int j = 0; //Indice para ver los pronósticos
 		
 		
 		//Supongamos que el orden de los datos es igual al moestrado en los ejemplos del PDF
 		//También asumimos que los archivos son archivos .cvs, esto será usado para separar los datos de los archivos
 		
-		for(String linea : lineasRes) {
+		
+		for(int i = 0; i < lineasRes.size(); i++) {
+			String linea = lineasRes.get(i);
 			String[] celdas = linea.split(",");
 			//celdas[] = [Nombre equipo 1, goles equipo 1, goles equipo 2, nombre equipo 2]
 			
@@ -104,33 +104,30 @@ public class CargadoDeArchivos {
 			
 			
 			//Ahora solo falta definir el pronostico (lo hago adentro del for para no tener que volver a definir todo el partido y los equipos)
-			for(String lineaP : lineasProc) {
-				String[] celdasP = lineaP.split(";");
+			String lineaP = lineasProc.get(i);
+			String[] celdasP = lineaP.split(",");
 				
-				Pronostico proc = new Pronostico();
+			Pronostico proc = new Pronostico();
 				
-				if (celdasP[1] == "X") {
-					proc.setEquipo(equipo1);
-					proc.setResultado("ganador"); //Gana equipo 1
+			if (celdasP[1].equals("X")) {
+				proc.setEquipo(equipo1);
+				proc.setResultado("ganador"); //Gana equipo 1
 					
-				} else if (celdasP[3] == "X") {
-					proc.setEquipo(equipo2);
-					proc.setResultado("ganador"); //Gana equipo 2
+			} else if (celdasP[3].equals("X")) {
+				proc.setEquipo(equipo2);
+				proc.setResultado("ganador"); //Gana equipo 2
 				
-				} else {
-					proc.setEquipo(equipo1);
-					proc.setResultado("empate"); //Empatan, así que no importa qué equipo ponga
-				}
-				
-				proc.setPartido(partido);
-				
-				pronosticos[j] = proc;
-				j++;
-				
+			} else {
+				proc.setEquipo(equipo1);
+				proc.setResultado("empate"); //Empatan, así que no importa qué equipo ponga
 			}
 			
+				
+			proc.setPartido(partido);
+	
+			
+			pronosticos[i] = proc;	
 			partidos[i] = partido;
-			i++;
 		}
 		
 		ronda1.setPartidos(partidos);
