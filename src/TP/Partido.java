@@ -1,11 +1,8 @@
 package TP;
 
-
 public class Partido {
 	
 	//Atributos
-	
-	//No tengo que importar la clase Equipo o Enum porque son parte del mismo paquete
 	
 	private Equipo equipo1;
 	private Equipo equipo2;
@@ -59,7 +56,7 @@ public class Partido {
 	
 	//Métodos
 	
-		//Ya que estoy guardando el resultado en la descripción del equipo, lo puedo sacar de ahí
+	//Ya que estoy guardando el resultado en la descripción del equipo, lo saco de ahí
 	
 	//Asumimos que nos dan un equipo que es parte del partido
 	public String resultado(Equipo e) {
@@ -69,6 +66,4 @@ public class Partido {
 			return this.equipo2.getDescripcion();
 		}
 	}
-	
-	
 }

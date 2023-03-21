@@ -1,7 +1,6 @@
 package TP;
 
 public class Pronostico {
-	
 	//Atributos
 	
 	private Partido partido;

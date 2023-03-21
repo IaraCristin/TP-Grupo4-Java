@@ -6,57 +6,45 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class LecturaDeArchivos {
-	public void main (String[] args){
-		//Cambie esto para tener un main más común
-		//Vamos a pedir como condición que primero nos pasen la ruta al archivo resultados y como segundo al archivo pronostico
-		
-		//Luego ver cómo testeamos esto
-		
-		String resultados =  args[0]; 
-		String pronostico =  args[1];
+public class CargadoDeArchivos {
+
+	public static void main(String[] args) {
+		//Nos van a pasar 2 argumentos que nos indican la ruta de los archivos a procesar
+		//Asumimos que nos pasan primero el de resultado y luego el del pronóstico
+		String resultados = args[0];
+		String pronostico = args[1];
 		
 		Path rutaRes;
 		Path rutaProc;
 		
-		//Primero vemos si los archivos que pedimos están en las ubicaciones dadas
-		
+		//Acá vamos a guardar las lineas que consigamos leer de los archivos
 		List<String> lineasRes = null;
 		List<String> lineasProc = null;
 		
+		
+		//Primero vemos si las rutas que nos dieron son válidas
+		//Pido un try para cada una para saber específicamente qué ruta no funciona
 		try {
-			
 			rutaRes = Paths.get(resultados);
-			lineasRes = Files.readAllLines(rutaRes); //Tener cuidado con esto, puede necesitar más especificación el método
-			
-			rutaProc = Paths.get(pronostico);
-			lineasProc = Files.readAllLines(rutaProc);
-			
-			
+			lineasRes = Files.readAllLines(rutaRes);			
 		} catch (IOException e){
-			
-			System.out.println("archivos innexistentes:");
+			System.out.println("Ruta de resultado no válida");
 			return;
 		}
 		
+		
+		try {
+			rutaProc = Paths.get(pronostico);
+			lineasProc = Files.readAllLines(rutaProc);	
+		} catch (IOException e){
+			System.out.println("Ruta de pronóstico no válida");
+			return;
+		}
+		
+		
 		//Una vez cargados los archivos, los procesamos
-		//Por ahora sabemos que solo va a haber una ronda
 		
-		Partido[] partidos = new Partido[lineasRes.size()];
-		int i = 0; //Indice para navegar el vector
-		
-		Ronda ronda1 = new Ronda();
-		
-		//Por ahora, como sabemos que es una sola ronda, podemos ponerlo ahora
-		ronda1.setNro("1");
-		
-		Pronostico[] pronosticos = new Pronostico[lineasProc.size()];
-		int j = 0; //Indice para ver los pronósticos
-		
-		//Supongamos que el orden de los datos es igual al moestrado en los ejemplos del PDF
-		//También asumimos que los archivos son archivos .cvs
-		
-		/* Antes de entrar en los ciclos, necesitamos "limpiar" los array de lineas, o sea, 
+		/* Antes de seguir, necesitamos "limpiar" los array de lineas, o sea, 
 		sacarle a cada una la primer linea que indica solo características
 		Ej: en resultados hay una linea que dice Equipo 1;Goles Equipo 1;Goles Equipo 2;Equipo 2
 		*/
@@ -64,8 +52,27 @@ public class LecturaDeArchivos {
 		lineasRes.remove(0);
 		lineasProc.remove(0);
 		
+		//Una vez limpio, tenemos solo los partidos cargados
+		
+		Partido[] partidos = new Partido[lineasRes.size()]; //Sabemos que la cantidad de lineas es igual a la cantidad de partidos
+		int i = 0; //Indice para navegar el vector
+		
+		Ronda ronda1 = new Ronda();
+		
+		//Por ahora, como sabemos que es una sola ronda, podemos ponerlo ahora
+		ronda1.setNro("1");
+		
+		Pronostico[] pronosticos = new Pronostico[lineasProc.size()]; //Sabemos que la cantidad de lineas es igual a la cantidad de predicciones
+		int j = 0; //Indice para ver los pronósticos
+		
+		
+		//Supongamos que el orden de los datos es igual al moestrado en los ejemplos del PDF
+		//También asumimos que los archivos son archivos .cvs, esto será usado para separar los datos de los archivos
+		
 		for(String linea : lineasRes) {
 			String[] celdas = linea.split(",");
+			//celdas[] = [Nombre equipo 1, goles equipo 1, goles equipo 2, nombre equipo 2]
+			
 			
 			//Armamos todos los objetos vacíos primero
 			Equipo equipo1 = new Equipo();
@@ -122,8 +129,6 @@ public class LecturaDeArchivos {
 				
 			}
 			
-			
-			//Analizar si esta parte funciona como corresponde
 			partidos[i] = partido;
 			i++;
 		}
@@ -149,6 +154,7 @@ public class LecturaDeArchivos {
 		//Ya con esto tenemos los puntos, solo falta imprimir
 		
 		System.out.println("El puntaje es: " + puntos);
-		
+
 	}
+
 }
