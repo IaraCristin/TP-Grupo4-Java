@@ -1,5 +1,7 @@
 package TP;
 
+import TP.EnumResultado.Resultado;
+
 public class Partido {
 	
 	//Atributos
@@ -15,26 +17,19 @@ public class Partido {
 		this.equipo1 = e;
 	};
 	
-	public void setEquipo1() {};
-	
 	public void setEquipo2(Equipo e) {
 		this.equipo2 = e;
 	};
-	
-	public void setEquipo2() {};
-	
+		
 
 	public void setGoles1(int goles) {
 		this.golesEquipo1 = goles;
 	};
 	
-	public void setGoles1() {};
 	
 	public void setGoles2(int goles) {
 		this.golesEquipo2 = goles;
 	};
-	
-	public void setGoles2() {};
 	
 	//Getters
 	
@@ -56,14 +51,26 @@ public class Partido {
 	
 	//Métodos
 	
-	//Ya que estoy guardando el resultado en la descripción del equipo, lo saco de ahí
 	
-	//Asumimos que nos dan un equipo que es parte del partido
-	public String resultado(Equipo e) {
+	public Resultado resultado(Equipo e) {
 		if (e.getNombre() == this.equipo1.getNombre()) {
-			return this.equipo1.getDescripcion();
+			
+			if(this.golesEquipo1 > this.golesEquipo2) {
+				return Resultado.GANADOR;
+			} else if(this.golesEquipo1 == this.golesEquipo2) {
+				return Resultado.EMPATE;
+			} else {
+				return Resultado.PERDEDOR;
+			}
+			
 		} else {
-			return this.equipo2.getDescripcion();
+			if(this.golesEquipo2 > this.golesEquipo1) {
+				return Resultado.GANADOR;
+			} else if(this.golesEquipo2 == this.golesEquipo1) {
+				return Resultado.EMPATE;
+			} else {
+				return Resultado.PERDEDOR;
+			}
 		}
 	}
 }

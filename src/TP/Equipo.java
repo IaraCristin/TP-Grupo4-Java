@@ -13,13 +13,10 @@ public class Equipo {
 		this.nombre = nombre;
 	}
 		
-	public void setNombre(){};
-		
 	public void setDescripcion(String desc) {
 		this.descripción = desc;
 	}
 		
-	public void setDescripcion(){};
 
 	//Getters
 		

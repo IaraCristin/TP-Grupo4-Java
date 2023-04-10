@@ -1,11 +1,13 @@
 package TP;
 
+import TP.EnumResultado.Resultado;
+
 public class Pronostico {
 	//Atributos
 	
 	private Partido partido;
 	private Equipo equipo;
-	private String resultado;
+	private Resultado resultado;
 	
 	
 	//Setters
@@ -18,7 +20,7 @@ public class Pronostico {
 		this.equipo = e;
 	}
 	
-	public void setResultado(String res) {
+	public void setResultado(Resultado res) {
 		this.resultado = res;
 	}
 	
@@ -32,7 +34,16 @@ public class Pronostico {
 		return this.equipo;
 	}
 	
-	public String getResultado() {
+	public Resultado getResultado() {
 		return this.resultado;
+	}
+	
+	//Metodos
+	public int puntos() {
+		if (resultado == partido.resultado(equipo)) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
